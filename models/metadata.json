@@ -1,0 +1,17 @@
+{
+    "features": [
+        "granulation_time",
+        "binder_amount",
+        "drying_temp",
+        "drying_time",
+        "compression_force",
+        "machine_speed"
+    ],
+    "targets": [
+        "energy_consumption",
+        "yield_pct",
+        "quality_pct",
+        "performance_score"
+    ],
+    "energy_residual_std": 24.261591443285788
+}
