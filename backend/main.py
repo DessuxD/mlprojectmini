@@ -45,9 +45,20 @@ class BatchInput(BaseModel):
 class AnomalyInput(BatchInput):
     actual_energy: Optional[float] = None
 
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "Batch Process API is running"}
+
 @app.get("/history")
 def get_history():
     history_path = os.path.join(data_dir, "batch_history.json")
+    if not os.path.exists(history_path):
+        try:
+            from .data_generator import init_data
+            init_data(data_dir)
+        except Exception as e:
+            print(f"Error generating data: {e}")
+            
     if os.path.exists(history_path):
         with open(history_path, 'r') as f:
             return json.load(f)
